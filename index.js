@@ -4,8 +4,8 @@ var port = process.env.PORT || 3000
 
 app.get('/',function(req,res){
 	var msg = 'Hi!, Welcome to timestamp microservice api. Enjoy.'
-	var msg2 = 'example url "'+__dirname
-	res.send(msg+'\n'+msg2)
+	var msg2 = 'example url "'+req.get('host')+'/december 20, 2017" or "'+req.get('host')+'/1477388794872"'
+	res.send(msg+'<br>'+msg2)
 })
 
 app.get('/:timestamp',function(req,res){
