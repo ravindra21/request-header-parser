@@ -2,7 +2,7 @@
   "name": "timestamp-microservice",
   "version": "1.0.0",
   "description": "timestamp microservice api",
-  "author": "Ravi_s_a",
+  "author": "Ravindra21",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
