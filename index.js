@@ -11,8 +11,7 @@ app.listen(port,function(){ console.log('app listen on port'+port) })
 function getParsedHeader(req){
 	var os = req.headers["user-agent"].split(/[\(\)]/)[1]
 	var lang = req.headers["accept-language"].split(',')[0]
-	var ip = req.connection.remoteAddress
-	//ip = ip.indexOf(':') >= 0 ? ip.split(':').reverse()[0] : ip
+	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
 
 	var result = {
 		ipaddress: ip,
