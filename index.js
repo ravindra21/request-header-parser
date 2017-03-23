@@ -2,36 +2,23 @@ var express = require('express')
 var app = express()
 var port = process.env.PORT || 3000
 
-app.get('/',function(req,res){
-	var msg = 'Hi!, Welcome to timestamp microservice api. Enjoy.'
-	var msg2 = 'example url "'+req.get('host')+'/december 20, 2017" or "'+req.get('host')+'/1477388794872"'
-	res.send(msg+'<br>'+msg2)
+app.get('/api/whoami',function(req, res){
+	res.json(getParsedHeader(req))
 })
 
-app.get('/:timestamp',function(req,res){
-	var timestamp = req.params.timestamp
-	res.json(getTimestamp(timestamp))
-})
+app.listen(port,function(){ console.log('app listen on port'+port) })
 
-app.listen(port,function(){ console.log('app running on port'+port) })
+function getParsedHeader(req){
+	var os = req.headers["user-agent"].split(/[\(\)]/)[1]
+	var lang = req.headers["accept-language"].split(',')[0]
+	var ip = req.connection.remoteAddress
+	ip = ip.indexOf(':') >= 0 ? ip.split(':').reverse()[0] : ip
 
-function getTimestamp(ts){
-	var result = {unix:null,natural:null}
-	var date;
-
-	date = isNaN(ts) ? new Date(ts) : new Date(parseInt(ts))
-	if(!isNaN(date.getTime())){
-		result.unix = date.getTime()
-		result.natural = getNaturalDate(date)
+	var result = {
+		ipaddress: ip,
+		language: lang,
+		software: os
 	}
+
 	return result
-}
-
-function getNaturalDate(dt){
-	var ret=''
-	var months = ['January','February','March','April','May','June','July','August','September','October','November','December']
-
-	ret = months[dt.getMonth()]+' '+dt.getDate()+', '+dt.getFullYear()
-
-	return ret
 }

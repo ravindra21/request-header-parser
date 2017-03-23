@@ -1,7 +1,7 @@
 {
-  "name": "timestamp-microservice",
+  "name": "request-header-parser",
   "version": "1.0.0",
-  "description": "timestamp microservice api",
+  "description": "request header parser api",
   "author": "Ravindra21",
   "license": "MIT",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "keywords":[
-    "heroku","timestamp","microservice","api"
+    "heroku","request","header","parser","api"
   ],
   "dependencies": {
     "body-parser": "~1.16.0",
